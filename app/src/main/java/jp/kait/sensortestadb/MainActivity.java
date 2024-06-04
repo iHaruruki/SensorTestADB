@@ -12,6 +12,7 @@ import java.util.List;
 import android.view.WindowManager;
 import org.microbridge.server.Server;
 import java.io.IOException;
+import org.microbridge.server.AbstractServerListener;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private SensorManager manager;
@@ -31,6 +32,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         try {
             server = new Server(4567);
             server.start();
+            server.addListener(new AbstractServerListener()
+            {
+                @Override
+                public void onReceive(org.microbridge.server.Client client,byte[] data)
+                {
+                    if (data.length<3)return;
+                    myView.setColor(
+                        (int)data[0]&0xFF,(int)data[1]&0xFF,(int)data[2]&0xFF
+                        );
+                }
+            });
         }
         catch(IOException e){
             System.exit(-1);

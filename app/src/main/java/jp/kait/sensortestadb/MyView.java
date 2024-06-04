@@ -13,6 +13,7 @@ import android.graphics.Rect;
  */
 public class MyView extends View {
     private  int  posX = 0 ,  posY = 0;
+    private int[] psColor = {160, 160, 255};
 
     public MyView(Context context) {
         super(context);
@@ -39,8 +40,15 @@ public class MyView extends View {
         canvas.drawRect(r, p);
 
         Paint ps = new Paint();
-        ps.setColor(Color.argb(255, 160, 160, 255));
+        //ps.setColor(Color.argb(255, 160, 160, 255));
+        ps.setColor(Color.argb(255,psColor[0],psColor[1],psColor[2]));
         canvas.drawCircle(width/2 - posX, height/2 + posY, 20, ps);
+    }
+
+    public void setColor(int red,int green,int blue){
+        psColor[0]=red;
+        psColor[1]=green;
+        psColor[2]=blue;
     }
 
     public void setPos(int x, int y){
