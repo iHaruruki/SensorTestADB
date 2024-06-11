@@ -61,6 +61,8 @@ public class MyView extends View {
         int height = getHeight();
         int w2 = width/2;
         int h2 = height/2;
+        //int Circle_Center_x = w2 + posX;
+        //int Circle_center_y = h2 + posY;
 
         //(w2 + posX - 20) >= 0;
         //(w2 + posX + 20) <= width;

@@ -92,9 +92,18 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             //dataView.setText(sendStr.toCharArray(), 0, sendStr.length() );
 
             sendData = new byte[6];
-            short ax = (short)(accX * 100.0);
+            short ax = (short)(accX * 100.0); //X
+            short ay = (short)(accY * 100.0); //Y
+            short az = (short)(accZ * 100.0); //Z
+            //X
             sendData[0] = (byte)((ax >> 8) & 0xFF);
             sendData[1] = (byte)(ax & 0xFF);
+            //Y
+            sendData[2] = (byte)((ay >> 8) & 0xFF);
+            sendData[3] = (byte)(ay & 0xFF);
+            //Z
+            sendData[4] = (byte)((az >> 8) & 0xFF);
+            sendData[5] = (byte)(az & 0xFF);
 
             Runnable runnable = new Runnable() {
                 @Override
