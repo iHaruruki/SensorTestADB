@@ -54,11 +54,18 @@ public class MyView extends View {
     public void setPos(int x, int y){
         posX = x;
         posY = y;
+        //MyViewの幅/2 + posX
+        //MyViewの
 
         int width = getWidth();
         int height = getHeight();
         int w2 = width/2;
         int h2 = height/2;
+
+        //(w2 + posX - 20) >= 0;
+        //(w2 + posX + 20) <= width;
+        //(h2 - posY - 20) >= 0;
+        //(h2 - posY + 20) <= height;
 
         invalidate();
     }

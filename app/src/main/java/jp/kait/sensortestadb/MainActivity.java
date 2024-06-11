@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Server server= null;
     TextView dataView;
     MyView myView;
-    String   sendStr;
+    //String   sendStr;
+    byte[] sendData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,19 +84,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             float accX = event.values[0];
             float accY = event.values[1];
             float accZ = event.values[2];
-
+/*
             sendStr = "加速度センサ値:"
                     + "\nX軸:" + accX
                     + "\nY軸:" + accY
-                    + "\nZ軸:" + accZ;
+                    + "\nZ軸:" + accZ;*/
             //dataView.setText(sendStr.toCharArray(), 0, sendStr.length() );
+
+            sendData = new byte[6];
+            short ax = (short)(accX * 100.0);
+            sendData[0] = (byte)((ax >> 8) & 0xFF);
+            sendData[1] = (byte)(ax & 0xFF);
 
             Runnable runnable = new Runnable() {
                 @Override
                 public void run() {
                     try
                     {
-                        server.send(sendStr+"\r\n");
+                        //server.send(sendStr+"\r\n");
+                        server.send(sendData);
                     }
                     catch (IOException e)
                     {
