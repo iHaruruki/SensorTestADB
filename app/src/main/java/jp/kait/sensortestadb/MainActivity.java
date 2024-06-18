@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             int posX , posY;
             posX = (int)(accX*100);
             posY = (int)(accY*100);
+
             myView.setPos( posX, posY);
         }
     }

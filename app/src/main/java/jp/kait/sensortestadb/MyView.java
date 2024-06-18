@@ -61,14 +61,16 @@ public class MyView extends View {
         int height = getHeight();
         int w2 = width/2;
         int h2 = height/2;
-        //int Circle_Center_x = w2 + posX;
-        //int Circle_center_y = h2 + posY;
+        int Circle_Center_x = w2 + posX;
+        int Circle_center_y = h2 + posY;
+
 
         //(w2 + posX - 20) >= 0;
         //(w2 + posX + 20) <= width;
         //(h2 - posY - 20) >= 0;
         //(h2 - posY + 20) <= height;
-
+        posX=Math.max(20-w2,Math.min(posX,width - 20 - w2));
+        posY=Math.max(-height + 20 + h2,Math.min(posY,h2-20));
         invalidate();
     }
 }
